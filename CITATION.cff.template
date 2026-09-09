@@ -4,6 +4,12 @@ title: "Regime-aware calibration and inverse-quantification reliability"
 version: 1.0.0
 date-released: 2026-09-09
 authors:
-  - family-names: "TO BE COMPLETED"
-    given-names: "TO BE COMPLETED"
-repository-code: "TO BE ADDED"
+  - family-names: "Zeynalova"
+    given-names: "Aydan"
+  - family-names: "Ateş"
+    given-names: "Ayten"
+  - family-names: "Oskay"
+    given-names: "Kürşad Oğuz"
+  - family-names: "Torun"
+    given-names: "Yunis"
+repository-code: "https://github.com/torunyunus/CuNW-glucose-calibration-reliability"
