@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite the associated manuscript and original experimental study."
+title: "Regime-aware calibration and inverse-quantification reliability"
+version: 1.0.0
+date-released: 2026-09-09
+authors:
+  - family-names: "Zeynalova"
+    given-names: "Aydan"
+  - family-names: "Ateş"
+    given-names: "Ayten"
+  - family-names: "Oskay"
+    given-names: "Kürşad Oğuz"
+  - family-names: "Torun"
+    given-names: "Yunis"
+repository-code: "https://github.com/torunyunus/CuNW-glucose-calibration-reliability"
