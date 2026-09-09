@@ -1,0 +1,26 @@
+{
+  "concentrations_uM": [5,50,100,150,200,500,2000,3000,4000],
+  "primary_knot_uM": 500.0,
+  "change_point": {
+    "score_half_window_s": 8.0,
+    "min_event_separation_s": 30.0,
+    "n_events": 9,
+    "analysis_time_min_s": 90.0,
+    "analysis_time_max_s": 550.0,
+    "peak_prominence_uA": 0.5
+  },
+  "plateau": {
+    "delay_s": 20.0,
+    "duration_s": 20.0,
+    "next_event_safety_s": 8.0
+  },
+  "free_knot_search_uM": [100.0,1500.0],
+  "bootstrap": {"n_iterations": 20000, "seed": 20260909},
+  "simulation": {"seed": 20260909},
+  "interference_events_s": {
+    "Glc1": 60.0, "AA": 110.0, "UA": 160.0, "Maltose": 210.0, "NaCl": 260.0, "Glc2": 300.0
+  },
+  "interference_window_s": 15.0,
+  "interference_exclusion_s": 2.0,
+  "potential_analysis_window_s": [200.0,249.0]
+}
