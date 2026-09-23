@@ -10,6 +10,7 @@ SCRIPTS = [
     "05_robustness_jackknife.py",
     "06_simulations.py",
     "07_supporting_electrochem.py",
+    "08_assemble_submission_figures.py",
 ]
 
 for script in SCRIPTS:
