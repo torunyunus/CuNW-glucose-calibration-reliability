@@ -7,6 +7,6 @@ name="cunw-calibration-reliability"
 version="1.0.0"
 description="Reproducible regime-aware calibration and inverse-quantification analysis."
 requires-python=">=3.11"
-dependencies=["numpy==2.3.5","scipy==1.16.3","matplotlib==3.10.8"]
+dependencies=["numpy==2.3.5","scipy==1.16.3","matplotlib==3.10.8","Pillow==11.3.0"]
 [tool.setuptools.packages.find]
 where=["src"]
