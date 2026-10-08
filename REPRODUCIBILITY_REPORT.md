@@ -39,6 +39,15 @@ These are **independent reference calculations, not an executed PASS result for 
 5. Confirm public redistribution rights for shared raw datasets with all coauthors, as flagged in `DATA_ORIGIN.md`.
 6. Record commit SHA, environment versions, command output and test outcome in a final report. Replace this pending status **only after tests have actually passed**.
 
+
+## CI run and output comparison (V38)
+
+GitHub Actions run 37829925167 completed successfully for commit 68ec8af97e5f790703c43fe9b89c5ff6a8e7ba73. Python 3.11.17; full analysis passed; pytest: four passed. Artifact: cunw-analysis-outputs, ID 11573600123.
+
+The generated sparse/dense simulation summary matches V34 to a maximum absolute difference of 4.6e-6 across two rows. The 12-row validation hierarchy grid matches to 1.3e-9. In contrast, the 40-row model-family recovery result differs substantially: the V34 reference reports 0/150 Langmuir selections for the sparse Langmuir simulation, while the GitHub run reports 139/150. The sparse Hill simulation reports 0/150 Hill selections in V34 versus 141/150 in the workflow output.
+
+Overall: CI passed; complete V34 manuscript and supplementary figure reconciliation is pending. Figures S7-S8 and their underlying reference CSV should be audited before merging this PR.
+
 ## Current execution status
 
-**PENDING.** This review branch has **not** passed a complete clean-environment `run_all.py` + `pytest -q` execution in the present session. No submission-ready certification is claimed.
+**CI PASSED; FULL V34 RECONCILIATION PENDING.**
