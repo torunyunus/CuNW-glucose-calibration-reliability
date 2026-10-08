@@ -1,48 +1,44 @@
-# Reproducibility validation report
+# Reproducibility reconciliation — V35 (pending full repository validation)
 
-The packaged repository was executed end-to-end in the supplied environment using:
+## Status and provenance
 
-```bash
-python run_all.py
-pytest -q
+The previous report documented **an older, pre-chronology-correction run**. Its metrics and unresolved 36–37 s clock discrepancy must **not** be interpreted as evidence validating V34 manuscript results. The experimental group subsequently clarified nominal additions at 100, 150, 200, 250, 300, 350, 400, 450 and 500 s; detected transitions are 111, 165, 213, 263, 319, 365, 411, 462 and 514 s (operational delays 11–19 s).
+
+This branch updates the segmented ground truth in `scripts/06_simulations.py` to:
+
+```python
+def seg(x):
+    x = np.asarray(x, float)
+    return 18.392512639957 + 0.236805055829*x - 0.221677359644*np.maximum(0, x-500)
 ```
 
-## End-to-end run
+The corresponding low/high slopes are 0.236805055829 and 0.015127696185 µA/µM, respectively (ratio ≈ 15.65). Concentration is in µM and current in µA.
 
-Status: **PASS**
+## Independently generated V34 simulation reference
 
-Runtime in the validation environment: approximately 34 s.
+With seed 20260909 and the original random-draw sequence (model-family recovery, sparse/dense design, then validation hierarchy), previously generated independent V34 results were:
 
-Core reproduced values:
+| Metric | Sparse | Dense |
+| --- | ---: | ---: |
+| Breakpoint 2.5th percentile (µM) | 425.87 | 465.57 |
+| Breakpoint median (µM) | 500.00 | 500.00 |
+| Breakpoint 97.5th percentile (µM) | 567.03 | 531.80 |
+| Inverse RMSE at 2 mM (µM) | 357.07 | 279.57 |
+| Inverse RMSE at 3 mM (µM) | 304.12 | 291.65 |
 
-- detected change points: 111, 165, 213, 263, 319, 365, 411, 462, 514 s
-- calibration reconstruction MAE: 0.5658 µA
-- calibration reconstruction RMSE: 0.6444 µA
-- median lag-1 plateau correlation: 0.6879
-- approximate median AR(1) effective sample size: 3.883
-- free-knot optimum: 595.30 µM
-- profile-based transition-support region: 462.72–740.95 µM
-- fixed-segmented low slope: 0.2365467 µA/µM
-- fixed-segmented high slope: 0.0151518 µA/µM
-- low/high slope ratio: 15.6118×
-- wild-bootstrap slope-ratio interval: approximately 12.53–20.11×
-- fixed-segmented forward LOCO RMSE: approximately 8.32 µA
-- fixed-segmented all-level inverse LOCO RMSE: 367.37 µM
-- fixed-segmented interior-only inverse LOCO RMSE: 262.93 µM
-- Langmuir all-level inverse LOCO RMSE: 321.16 µM
-- parameter-grid reconstruction RMSE range: 0.610–0.898 µA
-- parameter-grid slope-ratio range: 15.26–15.79×
-- jackknife slope-ratio range: 12.09–16.64×
-- jackknife breakpoint range: 559.5–826.6 µM
+The separate validation-hierarchy simulations reported LOCO/random RMSE ratios of 1.04–1.41 (level-offset SD 0), 1.54–1.67 (1 µA), and 1.78–1.89 (3.5 µA), conditional on simulated temporal dependence and level offsets.
 
-Supporting electrochemical calculations also reproduce the manuscript values for scan-rate analysis, applied-potential drift/noise, interference perturbations, and EIS parameter ratios.
+These are **independent reference calculations, not an executed PASS result for this branch**.
 
-## Regression tests
+## Mandatory verification before merge/publication
 
-Status: **PASS — 4/4 tests**
+1. Install dependencies: `pip install -r requirements.txt`.
+2. Run: `python run_all.py`.
+3. Run: `pytest -q`.
+4. Compare generated model and simulation CSV values with the V34 reference outputs and current manuscript/SI, noting numerical tolerances and RNG order.
+5. Confirm public redistribution rights for shared raw datasets with all coauthors, as flagged in `DATA_ORIGIN.md`.
+6. Record commit SHA, environment versions, command output and test outcome in a final report. Replace this pending status **only after tests have actually passed**.
 
-The tests freeze the main experimental-analysis results so later code changes can be checked for unintended numerical drift.
+## Current execution status
 
-## Important open provenance issue
-
-The approximately 36–37 s difference between the nominal dosing clock and the raw-trace event clock remains unresolved. The repository deliberately records this as an open provenance issue and does not assign a causal explanation.
+**PENDING.** This review branch has **not** passed a complete clean-environment `run_all.py` + `pytest -q` execution in the present session. No submission-ready certification is claimed.
