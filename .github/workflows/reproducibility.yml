@@ -1,0 +1,36 @@
+name: CuNW reproducibility checks
+
+on:
+  push:
+    branches:
+      - audit/v35-chronology-simulation-sync
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Record package versions
+        run: python -m pip freeze
+      - name: Run full analysis
+        run: python run_all.py
+      - name: Run frozen metric tests
+        run: python -m pytest -q
+      - name: Upload analysis outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cunw-analysis-outputs
+          path: outputs/
+          if-no-files-found: warn

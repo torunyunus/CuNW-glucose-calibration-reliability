@@ -8,7 +8,7 @@ from cunw_calibration.models import *
 from cunw_calibration.plotstyle import savefig
 rng=np.random.default_rng(load_config()["simulation"]["seed"]);sparse=np.array(load_config()["concentrations_uM"],float)
 dense=np.array([5,50,100,150,200,300,400,500,650,800,1000,1250,1500,1750,2000,2500,3000,3500,4000.])
-def seg(x):x=np.asarray(x,float);return 18.38539275+.23654670*x-.22139490*np.maximum(0,x-500)
+def seg(x):x=np.asarray(x,float);return 18.392512639957+0.236805055829*x-0.221677359644*np.maximum(0,x-500)
 truths={"Linear":lambda x:20+.04*np.asarray(x,float),"Segmented":seg,
 "Langmuir":lambda x:13.77247083+192.57594563*np.asarray(x,float)/(479.31238219+np.asarray(x,float)),
 "Hill":lambda x:30.07886340+147.68514925*((np.asarray(x,float)/347.63978836)**2.37971365)/(1+(np.asarray(x,float)/347.63978836)**2.37971365)}
