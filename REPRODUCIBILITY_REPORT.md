@@ -51,3 +51,7 @@ Overall: CI passed; complete V34 manuscript and supplementary figure reconciliat
 ## Current execution status
 
 **CI PASSED; FULL V34 RECONCILIATION PENDING.**
+
+### Root cause resolved for V34 reference discrepancy
+
+Inspection of the archived V34 source script showed that its model-recovery simulation imported `minimize_scalar` but omitted `least_squares` from SciPy. Its broad exception handler then assigned infinite AICc to Langmuir and Hill candidate fits. Therefore the older V34 selection-frequency CSV and figures S7-S8 are invalid reference outputs. The CI-generated model-family output is the corrected executable result. Supplementary Figures S7-S8 must be replaced with the generated CI figures before journal submission. The separate breakpoint and validation-hierarchy outputs were numerically consistent with V34.
