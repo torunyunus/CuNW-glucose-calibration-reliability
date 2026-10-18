@@ -29,4 +29,4 @@ The operational lag can contain mixing, response development, acquisition timing
 ## Chronology-aware plateau extraction
 Each non-final plateau is capped one sample before the next nominal analyte addition. This prevents samples collected after the subsequent physical addition from being assigned to the preceding concentration.
 
-Before public release, all co-authors should approve redistribution of the raw/processed data.
+All co-authors have approved the public sharing of the raw and processed experimental data included in this repository.
