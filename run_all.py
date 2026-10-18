@@ -11,6 +11,7 @@ SCRIPTS = [
     "06_simulations.py",
     "07_supporting_electrochem.py",
     "08_assemble_submission_figures.py",
+    "09_aicc_publication_update.py",
 ]
 
 for script in SCRIPTS:

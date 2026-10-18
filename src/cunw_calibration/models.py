@@ -36,7 +36,14 @@ def r2(y,yhat):
     y=np.asarray(y,float); yhat=np.asarray(yhat,float)
     return 1-np.sum((y-yhat)**2)/np.sum((y-y.mean())**2)
 def aicc(y,yhat,k):
+    """Gaussian AICc (common likelihood constant omitted), k mean parameters.
+
+    Include the estimated residual variance in the total parameter count.
+    """
+    k = k + 1
     y=np.asarray(y,float); yhat=np.asarray(yhat,float); n=len(y); rss=max(float(np.sum((y-yhat)**2)),1e-300)
+    if n <= k + 1:
+        return np.inf
     return n*np.log(rss/n)+2*k+2*k*(k+1)/(n-k-1)
 def inverse_predict(model,fit,current):
     y=float(current)
